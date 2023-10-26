@@ -24,7 +24,8 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
-import Splash from './pages/Splash';
+import RouteHandler from './routes/RouteHandler';
+import { NavigationContainer } from '@react-navigation/native';
 
 type SectionProps = PropsWithChildren<{
   title: string;
@@ -38,13 +39,15 @@ function App(): JSX.Element {
   };
 
   return (
-    <SafeAreaView style={backgroundStyle}>
+    <React.Fragment>
       <StatusBar
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
         backgroundColor={backgroundStyle.backgroundColor}
       />
-      <Splash />
-    </SafeAreaView>
+      <NavigationContainer>
+        <RouteHandler />
+      </NavigationContainer>
+    </React.Fragment>
   );
 }
 
