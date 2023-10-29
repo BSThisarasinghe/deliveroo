@@ -1,106 +1,82 @@
-import React from "react";
-import { Image, ImageBackground, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import React, { useRef } from "react";
+import { Animated, Image, ImageBackground, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { SubHeader } from "../components";
 
 const Home = () => {
+    const scrollOffsetY = useRef(new Animated.Value(0)).current;
     return (
-        <ScrollView>
-            <View style={{ flex: 1, height: 250 }}>
-                <ImageBackground
-                    source={require('../assets/images/background.webp')} // Replace this with the path to your splash screen image
-                    style={styles.backgroundImage}
-                >
-                    <View style={styles.container}>
-                        <TouchableOpacity style={styles.backButton}>
-                            <Icon name="arrow-left" size={20} color="#00b8a9" />
-                        </TouchableOpacity>
-                        <TouchableOpacity style={styles.bottomButton}>
-                            <Icon name="users" size={20} color="#00b8a9" />
-                            <Text style={{ color: '#000', marginLeft: 5 }}>Start group order</Text>
-                        </TouchableOpacity>
+        <View style={{ flex: 1 }}>
+            <SubHeader />
+            <ScrollView style={{ padding: 10 }}>
+                <View style={{
+                    // backgroundColor: 'blue'
+                    paddingTop: 20
+                }}>
+                    <Text style={{ color: '#000', fontSize: 12 }}>Adults need around 200 kcal a day</Text>
+                    <Text style={{ color: '#000', fontSize: 18, fontWeight: "700" }}>New Daily Specials</Text>
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingTop: 20 }}>
+                        <View>
+                            <Text style={{ color: '#000', fontSize: 16, fontWeight: "700" }}>Halloumi & roasted veg salad</Text>
+                            <Text style={{ color: '#000', fontSize: 16, fontWeight: "700" }}>DAILY SPECIAL</Text>
+                            <Text style={{ color: '#000', fontSize: 12, fontWeight: "300" }}>Currently sold out</Text>
+                            <Text style={{ color: '#000', fontSize: 12, fontWeight: "300" }}>467 kcal</Text>
+                            <Text style={{ color: '#000', fontSize: 12, fontWeight: "300" }}>$8.99 sold out</Text>
+                        </View>
+                        <View>
+                            <Image
+                                source={{ uri: 'https://rs-menus-api.roocdn.com/images/42b4537d-92c4-40b3-a2cd-4af40b0fae87/image.jpeg' }}
+                                style={{ width: 100, height: 100 }}
+                            />
+                        </View>
                     </View>
-                </ImageBackground>
+                </View>
+            </ScrollView>
+            <View style={{ backgroundColor: '#2e3333' }}>
+                <View style={{ backgroundColor: '#2e3333' }}>
+                    <Text>Discover Deliveroo</Text>
+                    <Text>Discover Deliveroo</Text>
+                    <Text>Discover Deliveroo</Text>
+                    <Text>Discover Deliveroo</Text>
+                    <Text>Discover Deliveroo</Text>
+                    <Text>Discover Deliveroo</Text>
+                    <Text>Discover Deliveroo</Text>
+                    <Text>Discover Deliveroo</Text>
+                    <Text>Discover Deliveroo</Text>
+                    <Text>Discover Deliveroo</Text>
+                    <Text>Discover Deliveroo</Text>
+                    <Text>Discover Deliveroo</Text>
+                </View>
+                <View style={{ backgroundColor: '#2e3333' }}>
+                    <Text>Discover Deliveroo</Text>
+                    <Text>Discover Deliveroo</Text>
+                    <Text>Discover Deliveroo</Text>
+                    <Text>Discover Deliveroo</Text>
+                    <Text>Discover Deliveroo</Text>
+                    <Text>Discover Deliveroo</Text>
+                    <Text>Discover Deliveroo</Text>
+                    <Text>Discover Deliveroo</Text>
+                    <Text>Discover Deliveroo</Text>
+                    <Text>Discover Deliveroo</Text>
+                    <Text>Discover Deliveroo</Text>
+                    <Text>Discover Deliveroo</Text>
+                </View>
+                <View style={{ backgroundColor: '#2e3333' }}>
+                    <Text>Discover Deliveroo</Text>
+                    <Text>Discover Deliveroo</Text>
+                    <Text>Discover Deliveroo</Text>
+                    <Text>Discover Deliveroo</Text>
+                    <Text>Discover Deliveroo</Text>
+                    <Text>Discover Deliveroo</Text>
+                    <Text>Discover Deliveroo</Text>
+                    <Text>Discover Deliveroo</Text>
+                    <Text>Discover Deliveroo</Text>
+                    <Text>Discover Deliveroo</Text>
+                    <Text>Discover Deliveroo</Text>
+                    <Text>Discover Deliveroo</Text>
+                </View>
             </View>
-            <View style={{ flex: 1, flexDirection: 'column', padding: 10 }}>
-                <Text style={{ fontSize: 26, color: '#000', fontWeight: "700" }}>Tossed - St Martin's Lane</Text>
-                <Text style={{ fontSize: 16, color: '#000', fontWeight: "300" }}>Chicken·Salads·Healthy</Text>
-                <Text style={{ fontSize: 16, color: '#000', fontWeight: "300" }}>0.20 miles away·Closes at 21:00·£7.00</Text>
-                <Text style={{ fontSize: 16, color: '#000', fontWeight: "300" }}>minimum·£0.49 delivery</Text>
-                <View style={{ height: 60, flexDirection: 'row', justifyContent: 'space-between', padding: 10, alignItems: 'center' }}>
-                    <View style={{ height: 60, width: 30, justifyContent: 'center', alignItems: 'center', padding: 5 }}>
-                        <Icon name="info-circle" size={20} color="#00b8a9" />
-                    </View>
-                    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start', flexDirection: 'column' }}>
-                        <Text style={{ color: '#000', fontSize: 20, fontWeight: "200" }}>Info</Text>
-                        <Text style={{ color: '#000', fontSize: 16, fontWeight: "200" }}>Map, allergens and hygiene rating</Text>
-                    </View>
-                    <View style={{ height: 60, width: 30, justifyContent: 'center', alignItems: 'center', padding: 5 }}>
-                        <Icon name="arrow-right" size={20} color="#00b8a9" />
-                    </View>
-                </View>
-                <View style={{ height: 60, flexDirection: 'row', justifyContent: 'space-between', padding: 10, alignItems: 'center' }}>
-                    <View style={{ height: 60, width: 30, justifyContent: 'center', alignItems: 'center', padding: 5 }}>
-                        <Icon name="info-circle" size={20} color="#00b8a9" />
-                    </View>
-                    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start', flexDirection: 'column' }}>
-                        <Text style={{ color: '#000', fontSize: 20, fontWeight: "200" }}>Info</Text>
-                        <Text style={{ color: '#000', fontSize: 16, fontWeight: "200" }}>Map, allergens and hygiene rating</Text>
-                    </View>
-                    <View style={{ height: 60, width: 30, justifyContent: 'center', alignItems: 'center', padding: 5 }}>
-                        <Icon name="arrow-right" size={20} color="#00b8a9" />
-                    </View>
-                </View>
-                <View style={{ height: 60, flexDirection: 'row', justifyContent: 'space-between', padding: 10, alignItems: 'center' }}>
-                    <View style={{ height: 60, width: 30, justifyContent: 'center', alignItems: 'center', padding: 5 }}>
-                        <Icon name="info-circle" size={20} color="#00b8a9" />
-                    </View>
-                    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start', flexDirection: 'column' }}>
-                        <Text style={{ color: '#000', fontSize: 20, fontWeight: "200" }}>Info</Text>
-                    </View>
-                    <View style={{ height: 60, width: 30, justifyContent: 'center', alignItems: 'center', padding: 5 }}>
-                        <Icon name="arrow-right" size={20} color="#00b8a9" />
-                    </View>
-                </View>
-                <ScrollView style={{ flexDirection: 'row' }} horizontal={true}>
-                    <TouchableOpacity style={{ backgroundColor: '#00b8a9', height: 30, justifyContent: 'center', alignItems: 'center', borderRadius: 20 }}>
-                        <Text>New daily Specials</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={{ backgroundColor: '#00b8a9', height: 30, justifyContent: 'center', alignItems: 'center', borderRadius: 20 }}>
-                        <Text>New daily Specials</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={{ backgroundColor: '#00b8a9', height: 30, justifyContent: 'center', alignItems: 'center', borderRadius: 20 }}>
-                        <Text>New daily Specials</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={{ backgroundColor: '#00b8a9', height: 30, justifyContent: 'center', alignItems: 'center', borderRadius: 20 }}>
-                        <Text>New daily Specials</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={{ backgroundColor: '#00b8a9', height: 30, justifyContent: 'center', alignItems: 'center', borderRadius: 20 }}>
-                        <Text>New daily Specials</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={{ backgroundColor: '#00b8a9', height: 30, justifyContent: 'center', alignItems: 'center', borderRadius: 20 }}>
-                        <Text>New daily Specials</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={{ backgroundColor: '#00b8a9', height: 30, justifyContent: 'center', alignItems: 'center', borderRadius: 20 }}>
-                        <Text>New daily Specials</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={{ backgroundColor: '#00b8a9', height: 30, justifyContent: 'center', alignItems: 'center', borderRadius: 20 }}>
-                        <Text>New daily Specials</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={{ backgroundColor: '#00b8a9', height: 30, justifyContent: 'center', alignItems: 'center', borderRadius: 20 }}>
-                        <Text>New daily Specials</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={{ backgroundColor: '#00b8a9', height: 30, justifyContent: 'center', alignItems: 'center', borderRadius: 20 }}>
-                        <Text>New daily Specials</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={{ backgroundColor: '#00b8a9', height: 30, justifyContent: 'center', alignItems: 'center', borderRadius: 20 }}>
-                        <Text>New daily Specials</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={{ backgroundColor: '#00b8a9', height: 30, justifyContent: 'center', alignItems: 'center', borderRadius: 20 }}>
-                        <Text>New daily Specials</Text>
-                    </TouchableOpacity>
-                </ScrollView>
-            </View>
-        </ScrollView>
+        </View>
     )
 }
 
