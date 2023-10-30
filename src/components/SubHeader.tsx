@@ -2,28 +2,15 @@ import * as React from 'react';
 import { Text, View, StyleSheet, Animated, ImageBackground, ScrollView, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-const Header_Max_Height = 700;
-const Header_Min_Height = 80;
-
-function SubHeader({ animHeaderValue, onPressTab }: any) {
-
-    const animateHeaderHeight = animHeaderValue.interpolate({
-        inputRange: [0, Header_Max_Height - Header_Min_Height],
-        outputRange: [Header_Max_Height, Header_Min_Height],
-        extrapolate: 'clamp'
-    })
+function SubHeader({ animHeaderValue, mockdata }: any) {
 
     return (
-        <Animated.View
+        <View
             style={[
-                styles.header,
-                {
-                    height: animateHeaderHeight
-                }
-
+                styles.header
             ]}
         >
-            <View style={{ flex: 1, height: 50 }}>
+            <View style={{ flex: 1, height: 250 }}>
                 <ImageBackground
                     source={require('../assets/images/background.webp')} // Replace this with the path to your splash screen image
                     style={styles.backgroundImage}
@@ -50,10 +37,10 @@ function SubHeader({ animHeaderValue, onPressTab }: any) {
                 shadowRadius: 3,
                 elevation: 2,
             }}>
-                <Text style={{ fontSize: 20, color: '#000', fontWeight: "700" }}>Tossed - St Martin's Lane</Text>
-                <Text style={{ fontSize: 14, color: '#000', fontWeight: "300" }}>Chicken·Salads·Healthy</Text>
-                <Text style={{ fontSize: 14, color: '#000', fontWeight: "300" }}>0.20 miles away·Closes at 21:00·£7.00</Text>
-                <Text style={{ fontSize: 14, color: '#000', fontWeight: "300" }}>minimum·£0.49 delivery</Text>
+                <Text style={{ fontSize: 20, color: '#000', fontWeight: "700" }}>{mockdata.companyName}</Text>
+                <Text style={{ fontSize: 14, color: '#000', fontWeight: "300" }}>{mockdata.duration} {mockdata.orderName}</Text>
+                <Text style={{ fontSize: 14, color: '#000', fontWeight: "300" }}>{mockdata.distance} miles away·Closes at {mockdata.closeAt}·£{mockdata.price}</Text>
+                <Text style={{ fontSize: 14, color: '#000', fontWeight: "300" }}>minimum·£{mockdata.deliveryCharge} delivery</Text>
                 <View style={{ height: 60, flexDirection: 'row', justifyContent: 'space-between', padding: 10, alignItems: 'center' }}>
                     <View style={{ height: 60, width: 30, justifyContent: 'center', alignItems: 'center', padding: 5 }}>
                         <Icon name="info-circle" size={20} color="#00b8a9" />
@@ -71,7 +58,7 @@ function SubHeader({ animHeaderValue, onPressTab }: any) {
                         <Icon name="star" size={20} color="#00b8a9" />
                     </View>
                     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start', flexDirection: 'column' }}>
-                        <Text style={{ color: '#000', fontSize: 14, fontWeight: "200" }}>4.7 Excellent</Text>
+                        <Text style={{ color: '#000', fontSize: 14, fontWeight: "200" }}>{mockdata.rating} Excellent</Text>
                         <Text style={{ color: '#000', fontSize: 12, fontWeight: "200" }}>See all 600 reviews</Text>
                     </View>
                     <View style={{ height: 60, width: 30, justifyContent: 'center', alignItems: 'center', padding: 5 }}>
@@ -83,53 +70,14 @@ function SubHeader({ animHeaderValue, onPressTab }: any) {
                         <Icon name="bicycle" size={15} color="#00b8a9" />
                     </View>
                     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start', flexDirection: 'column' }}>
-                        <Text style={{ color: '#000', fontSize: 14, fontWeight: "200" }}>Deliver</Text>
+                        <Text style={{ color: '#000', fontSize: 14, fontWeight: "200" }}>Deliver in {mockdata.duration}</Text>
                     </View>
                     <View style={{ height: 60, justifyContent: 'center', alignItems: 'center', padding: 5 }}>
                         <Text style={{ color: '#00b8a9', fontSize: 14, fontWeight: "300" }}>Change</Text>
                     </View>
                 </View>
             </View>
-            <View>
-                <ScrollView style={{ flexDirection: 'row', marginTop: -50, height: 100, }} contentContainerStyle={{ alignItems: 'center', flexDirection: 'row', maxHeight: 100 }} horizontal>
-                    <View style={{ flexDirection: 'row', height: 100, alignItems: 'center', backgroundColor: '#fff' }}>
-                        <TouchableOpacity style={{ backgroundColor: '#00b8a9', height: 30, justifyContent: 'center', alignItems: 'center', borderRadius: 20, marginRight: 10, paddingLeft: 10, paddingRight: 10 }}>
-                            <Text>New daily Specials</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity style={{ backgroundColor: '#00b8a9', height: 30, justifyContent: 'center', alignItems: 'center', borderRadius: 20, marginRight: 10, paddingLeft: 10, paddingRight: 10 }}>
-                            <Text>Salads</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity style={{ backgroundColor: '#00b8a9', height: 30, justifyContent: 'center', alignItems: 'center', borderRadius: 20, marginRight: 10, paddingLeft: 10, paddingRight: 10 }}>
-                            <Text>How power bowls</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity style={{ backgroundColor: '#00b8a9', height: 30, justifyContent: 'center', alignItems: 'center', borderRadius: 20, marginRight: 10, paddingLeft: 10, paddingRight: 10 }} onPress={() => onPressTab("Gym food")}>
-                            <Text>Gym food</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity style={{ backgroundColor: '#00b8a9', height: 30, justifyContent: 'center', alignItems: 'center', borderRadius: 20, marginRight: 10, paddingLeft: 10, paddingRight: 10 }}>
-                            <Text>Bundles</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity style={{ backgroundColor: '#00b8a9', height: 30, justifyContent: 'center', alignItems: 'center', borderRadius: 20, marginRight: 10, paddingLeft: 10, paddingRight: 10 }}>
-                            <Text>Rainbow Wraps</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity style={{ backgroundColor: '#00b8a9', height: 30, justifyContent: 'center', alignItems: 'center', borderRadius: 20, marginRight: 10, paddingLeft: 10, paddingRight: 10 }}>
-                            <Text>Vegan menu</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity style={{ backgroundColor: '#00b8a9', height: 30, justifyContent: 'center', alignItems: 'center', borderRadius: 20, marginRight: 10, paddingLeft: 10, paddingRight: 10 }}>
-                            <Text>Snacks and sides</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity style={{ backgroundColor: '#00b8a9', height: 30, justifyContent: 'center', alignItems: 'center', borderRadius: 20, marginRight: 10, paddingLeft: 10, paddingRight: 10 }}>
-                            <Text>Yoghurt & fruit</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity style={{ backgroundColor: '#00b8a9', height: 30, justifyContent: 'center', alignItems: 'center', borderRadius: 20, marginRight: 10, paddingLeft: 10, paddingRight: 10 }}>
-                            <Text>Cold drinks</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity style={{ backgroundColor: '#00b8a9', height: 30, justifyContent: 'center', alignItems: 'center', borderRadius: 20, marginRight: 10, paddingLeft: 10, paddingRight: 10 }}>
-                            <Text>Smoothies, shakes & juice</Text>
-                        </TouchableOpacity>
-                    </View>
-                </ScrollView>
-            </View>
-        </Animated.View>
+        </View>
     );
 }
 
@@ -140,6 +88,7 @@ const styles = StyleSheet.create({
         // left: 0,
         // right: 0,
         // paddingTop: 10
+        // backgroundColor: 'red'
     },
     backgroundImage: {
         flex: 1,
