@@ -1,14 +1,41 @@
-import React, { useRef } from "react";
-import { Animated, Image, ImageBackground, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import Icon from 'react-native-vector-icons/FontAwesome';
-import { SubHeader } from "../components";
+import React, { useState, useRef, useEffect } from 'react';
+import { SafeAreaView, ScrollView, Text, Animated, StyleSheet, View, Image, Alert } from 'react-native';
+import { SubHeader } from '../components';
 
-const Home = () => {
-    const scrollOffsetY = useRef(new Animated.Value(0)).current;
+
+export default function App() {
+    const scrollViewRef = useRef<any>(null);
+    let scrollOffsetY = useRef(new Animated.Value(0)).current;
+    const [tab, setTab] = useState('New daily Specials');
+
+    const onPressTab = (tabName: string) => {
+        setTab(tabName);
+        const yOffset = 500;
+        // console.log("@@@", tabName);
+        
+        if (scrollViewRef.current) {
+            scrollViewRef.current.scrollTo({ y: yOffset, animated: true });
+        }
+    }
+
+    useEffect(() => {
+
+    }, [tab]);
+
     return (
-        <View style={{ flex: 1 }}>
-            <SubHeader />
-            <ScrollView style={{ padding: 10 }}>
+        <View style={styles.container}>
+            <SubHeader
+                animHeaderValue={scrollOffsetY}
+                onPressTab={onPressTab}
+            />
+            <ScrollView
+                ref={scrollViewRef}
+                scrollEventThrottle={16}
+                onScroll={Animated.event(
+                    [{ nativeEvent: { contentOffset: { y: scrollOffsetY } } }],
+                    { useNativeDriver: false }
+                )}
+            >
                 <View style={{
                     // backgroundColor: 'blue'
                     paddingTop: 20
@@ -31,87 +58,93 @@ const Home = () => {
                         </View>
                     </View>
                 </View>
+                <View style={{ backgroundColor: '#2e3333' }}>
+                    <View style={{ backgroundColor: '#2e3333' }}>
+                        <Text>Discover Deliveroo</Text>
+                        <Text>Discover Deliveroo</Text>
+                        <Text>Discover Deliveroo</Text>
+                        <Text>Discover Deliveroo</Text>
+                        <Text>Discover Deliveroo</Text>
+                        <Text>Discover Deliveroo</Text>
+                        <Text>Discover Deliveroo</Text>
+                        <Text>Discover Deliveroo</Text>
+                        <Text>Discover Deliveroo</Text>
+                        <Text>Discover Deliveroo</Text>
+                        <Text>Discover Deliveroo</Text>
+                        <Text>Discover Deliveroo</Text>
+                    </View>
+                    <View style={{ backgroundColor: '#2e3333' }}>
+                        <Text>Discover Deliveroo</Text>
+                        <Text>Discover Deliveroo</Text>
+                        <Text>Discover Deliveroo</Text>
+                        <Text>Discover Deliveroo</Text>
+                        <Text>Discover Deliveroo</Text>
+                        <Text>Discover Deliveroo</Text>
+                        <Text>Discover Deliveroo</Text>
+                        <Text>Discover Deliveroo</Text>
+                        <Text>Discover Deliveroo</Text>
+                        <Text>Discover Deliveroo</Text>
+                        <Text>Discover Deliveroo</Text>
+                        <Text>Discover Deliveroo</Text>
+                    </View>
+                    <View style={{ backgroundColor: '#2e3333' }}>
+                        <Text>Discover Deliveroo</Text>
+                        <Text>Discover Deliveroo</Text>
+                        <Text>Discover Deliveroo</Text>
+                        <Text>Discover Deliveroo</Text>
+                        <Text>Discover Deliveroo</Text>
+                        <Text>Discover Deliveroo</Text>
+                        <Text>Discover Deliveroo</Text>
+                        <Text>Discover Deliveroo</Text>
+                        <Text>Discover Deliveroo</Text>
+                        <Text>Discover Deliveroo</Text>
+                        <Text>Discover Deliveroo</Text>
+                        <Text>Discover Deliveroo</Text>
+                    </View>
+                    <View style={{ backgroundColor: '#2e3333' }}>
+                        <Text>Discover Deliveroo</Text>
+                        <Text>Discover Deliveroo</Text>
+                        <Text>Discover Deliveroo</Text>
+                        <Text>Discover Deliveroo</Text>
+                        <Text>Discover Deliveroo</Text>
+                        <Text>Discover Deliveroo</Text>
+                        <Text>Discover Deliveroo</Text>
+                        <Text>Discover Deliveroo</Text>
+                        <Text>Discover Deliveroo</Text>
+                        <Text>Discover Deliveroo</Text>
+                        <Text>Discover Deliveroo</Text>
+                        <Text>Discover Deliveroo</Text>
+                    </View>
+                    <View style={{ backgroundColor: '#2e3333' }}>
+                        <Text>Discover Deliveroo</Text>
+                        <Text>Discover Deliveroo</Text>
+                        <Text>Discover Deliveroo</Text>
+                        <Text>Discover Deliveroo</Text>
+                        <Text>Discover Deliveroo</Text>
+                        <Text>Discover Deliveroo</Text>
+                        <Text>Discover Deliveroo</Text>
+                        <Text>Discover Deliveroo</Text>
+                        <Text>Discover Deliveroo</Text>
+                        <Text>Discover Deliveroo</Text>
+                        <Text>Discover Deliveroo</Text>
+                        <Text>Discover Deliveroo</Text>
+                    </View>
+                </View>
             </ScrollView>
-            <View style={{ backgroundColor: '#2e3333' }}>
-                <View style={{ backgroundColor: '#2e3333' }}>
-                    <Text>Discover Deliveroo</Text>
-                    <Text>Discover Deliveroo</Text>
-                    <Text>Discover Deliveroo</Text>
-                    <Text>Discover Deliveroo</Text>
-                    <Text>Discover Deliveroo</Text>
-                    <Text>Discover Deliveroo</Text>
-                    <Text>Discover Deliveroo</Text>
-                    <Text>Discover Deliveroo</Text>
-                    <Text>Discover Deliveroo</Text>
-                    <Text>Discover Deliveroo</Text>
-                    <Text>Discover Deliveroo</Text>
-                    <Text>Discover Deliveroo</Text>
-                </View>
-                <View style={{ backgroundColor: '#2e3333' }}>
-                    <Text>Discover Deliveroo</Text>
-                    <Text>Discover Deliveroo</Text>
-                    <Text>Discover Deliveroo</Text>
-                    <Text>Discover Deliveroo</Text>
-                    <Text>Discover Deliveroo</Text>
-                    <Text>Discover Deliveroo</Text>
-                    <Text>Discover Deliveroo</Text>
-                    <Text>Discover Deliveroo</Text>
-                    <Text>Discover Deliveroo</Text>
-                    <Text>Discover Deliveroo</Text>
-                    <Text>Discover Deliveroo</Text>
-                    <Text>Discover Deliveroo</Text>
-                </View>
-                <View style={{ backgroundColor: '#2e3333' }}>
-                    <Text>Discover Deliveroo</Text>
-                    <Text>Discover Deliveroo</Text>
-                    <Text>Discover Deliveroo</Text>
-                    <Text>Discover Deliveroo</Text>
-                    <Text>Discover Deliveroo</Text>
-                    <Text>Discover Deliveroo</Text>
-                    <Text>Discover Deliveroo</Text>
-                    <Text>Discover Deliveroo</Text>
-                    <Text>Discover Deliveroo</Text>
-                    <Text>Discover Deliveroo</Text>
-                    <Text>Discover Deliveroo</Text>
-                    <Text>Discover Deliveroo</Text>
-                </View>
-            </View>
         </View>
-    )
+    );
 }
 
 const styles = StyleSheet.create({
-    backgroundImage: {
-        flex: 1,
-        resizeMode: 'cover', // or 'stretch' if you want to stretch the image
-    },
     container: {
         flex: 1,
-        justifyContent: 'space-between',
+        paddingTop: 10,
+        margin: 0
+    },
+    scrollText: {
+        fontSize: 19,
+        textAlign: 'center',
         padding: 20,
-    },
-    backButton: {
-        position: 'absolute',
-        top: 20,
-        left: 20,
-        width: 40,
-        height: 40,
-        backgroundColor: 'rgba(255, 255, 255, 1)', // semi-transparent white background
-        padding: 10,
-        borderRadius: 40,
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-    bottomButton: {
-        position: 'absolute',
-        bottom: 20,
-        right: 20,
-        backgroundColor: 'rgba(255, 255, 255, 1)', // semi-transparent white background
-        padding: 10,
-        borderRadius: 5,
-        flexDirection: 'row',
-        justifyContent: 'space-between'
+        color: '#000'
     }
 });
-
-export default Home;
