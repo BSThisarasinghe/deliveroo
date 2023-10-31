@@ -2,7 +2,7 @@ import React from "react"
 import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native"
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-const Header = () => {
+const Header = ({ navigation }: any) => {
     return (
         <View style={styles.container}>
             <View style={styles.logoContainer}>
@@ -14,7 +14,7 @@ const Header = () => {
             <TouchableOpacity style={styles.searchButtonStyle}>
                 <Icon name="search" size={20} color="#00b8a9" />
             </TouchableOpacity>
-            <TouchableOpacity style={styles.accountButtonStyle}>
+            <TouchableOpacity style={styles.accountButtonStyle} onPress={() => navigation.navigate('login')}>
                 <Icon name="user" size={20} color="#00b8a9" />
                 <Text style={styles.buttonTextStyle}>Account</Text>
             </TouchableOpacity>
