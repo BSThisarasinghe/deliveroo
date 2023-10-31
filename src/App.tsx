@@ -26,6 +26,8 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 import RouteHandler from './routes/RouteHandler';
 import { NavigationContainer } from '@react-navigation/native';
+import { Provider } from 'react-redux';
+import store from './store';
 
 type SectionProps = PropsWithChildren<{
   title: string;
@@ -40,13 +42,15 @@ function App(): JSX.Element {
 
   return (
     <React.Fragment>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <NavigationContainer>
-        <RouteHandler />
-      </NavigationContainer>
+      <Provider store={store}>
+        <StatusBar
+          barStyle={isDarkMode ? 'light-content' : 'dark-content'}
+          backgroundColor={backgroundStyle.backgroundColor}
+        />
+        <NavigationContainer>
+          <RouteHandler />
+        </NavigationContainer>
+      </Provider>
     </React.Fragment>
   );
 }

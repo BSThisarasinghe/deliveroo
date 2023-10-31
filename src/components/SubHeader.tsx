@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Text, View, StyleSheet, Animated, ImageBackground, ScrollView, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-function SubHeader({ animHeaderValue, mockdata }: any) {
+function SubHeader({ orderDetails }: any) {
 
     return (
         <View
@@ -25,10 +25,10 @@ function SubHeader({ animHeaderValue, mockdata }: any) {
                 </ImageBackground>
             </View>
             <View style={styles.contentWrapper}>
-                <Text style={styles.orderTitle}>{mockdata.companyName}</Text>
-                <Text style={styles.orderText}>{mockdata.duration} {mockdata.orderName}</Text>
-                <Text style={styles.orderText}>{mockdata.distance} miles away·Closes at {mockdata.closeAt}·£{mockdata.price}</Text>
-                <Text style={styles.orderText}>minimum·£{mockdata.deliveryCharge} delivery</Text>
+                <Text style={styles.orderTitle}>{orderDetails.companyName}</Text>
+                <Text style={styles.orderText}>{orderDetails.duration} {orderDetails.orderName}</Text>
+                <Text style={styles.orderText}>{orderDetails.distance} miles away·Closes at {orderDetails.closeAt}·£{orderDetails.price}</Text>
+                <Text style={styles.orderText}>minimum·£{orderDetails.deliveryCharge} delivery</Text>
                 <View style={styles.orderInfoWrapper}>
                     <View style={styles.iconWrapper}>
                         <Icon name="info-circle" size={20} color="#00b8a9" />
@@ -46,7 +46,7 @@ function SubHeader({ animHeaderValue, mockdata }: any) {
                         <Icon name="star" size={20} color="#00b8a9" />
                     </View>
                     <View style={styles.infoTextWrapper}>
-                        <Text style={styles.infoText}>{mockdata.rating} Excellent</Text>
+                        <Text style={styles.infoText}>{orderDetails.rating} Excellent</Text>
                         <Text style={styles.infoDetail}>See all 600 reviews</Text>
                     </View>
                     <View style={styles.iconWrapper}>
@@ -58,7 +58,7 @@ function SubHeader({ animHeaderValue, mockdata }: any) {
                         <Icon name="bicycle" size={15} color="#00b8a9" />
                     </View>
                     <View style={styles.infoTextWrapper}>
-                        <Text style={styles.infoText}>Deliver in {mockdata.duration}</Text>
+                        <Text style={styles.infoText}>Deliver in {orderDetails.duration}</Text>
                     </View>
                     <View style={styles.infoButtonWrapper}>
                         <Text style={styles.infoButtonText}>Change</Text>

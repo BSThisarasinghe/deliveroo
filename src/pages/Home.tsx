@@ -1,27 +1,33 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { SafeAreaView, ScrollView, Text, Animated, StyleSheet, View, Image, Alert, FlatList, TouchableOpacity } from 'react-native';
 import { Footer, SubHeader } from '../components';
-import mockdata from '../data/mockdata.json';
+import { useDispatch, useSelector } from "react-redux";
 import DataItem from '../models/data-item.model';
 import MenuItem from '../models/menu-item.model';
+import { fetchMockdata } from '../store/actions';
 
 export default function Home() {
     const flatListRef = useRef<FlatList<DataItem>>(null);
-    let scrollOffsetY = useRef(new Animated.Value(0)).current;
     const [tab, setTab] = useState(0);
-    const [foodDetails, setFoodDetails] = useState<any>(mockdata);
     const [itemHeight, setItemHeight] = useState(0);
 
-    const [stickyHeaderIndices, setStickyHeaderIndices] = useState<number[]>([])
+    const dispatch = useDispatch();
 
+    const {
+        orderDetails
+      } = useSelector<any, any>(({ order }) => order);
 
     const scrollToItem = (index: number) => {
         setTab(index);
         if (flatListRef.current) {
-            let data: any = mockdata.menu;
-            flatListRef.current.scrollToItem({ animated: true, item: data[index] }); // Scrolls to the 5th item (index is 0-based)
+            let data: any = orderDetails.menu;
+            flatListRef.current.scrollToItem({ animated: true, item: data[index] });
         }
     };
+
+    useEffect(() => {
+        dispatch(fetchMockdata());
+    }, []);
 
     const renderMenuItem = ({ item }: { item: MenuItem }) => {
         return (
@@ -109,8 +115,7 @@ export default function Home() {
 
     const renderHeader = () => (
         <SubHeader
-            animHeaderValue={scrollOffsetY}
-            mockdata={mockdata}
+            orderDetails={orderDetails}
         />
     );
 
@@ -129,7 +134,7 @@ export default function Home() {
             <View>
                 <FlatList
                     ref={flatListRef}
-                    data={mockdata.menu}
+                    data={orderDetails.menu}
                     renderItem={renderItem}
                     keyExtractor={(item, index) => index.toString()}
                     stickyHeaderIndices={[1]}

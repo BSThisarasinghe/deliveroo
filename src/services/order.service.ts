@@ -1,7 +1,7 @@
 import mockdata from '../data/mockdata.json';
 
 const getMockdata = () => {
-    return mockdata;
+    return Promise.resolve(mockdata);
 };
 
 export {
