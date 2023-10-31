@@ -6,11 +6,9 @@ function SubHeader({ animHeaderValue, mockdata }: any) {
 
     return (
         <View
-            style={[
-                styles.header
-            ]}
+            style={styles.header}
         >
-            <View style={{ flex: 1, height: 250 }}>
+            <View style={styles.backgroundImageWrapper}>
                 <ImageBackground
                     source={require('../assets/images/background.webp')} // Replace this with the path to your splash screen image
                     style={styles.backgroundImage}
@@ -21,59 +19,49 @@ function SubHeader({ animHeaderValue, mockdata }: any) {
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.bottomButton}>
                             <Icon name="users" size={20} color="#00b8a9" />
-                            <Text style={{ color: '#000', marginLeft: 5 }}>Start group order</Text>
+                            <Text style={styles.buttonText}>Start group order</Text>
                         </TouchableOpacity>
                     </View>
                 </ImageBackground>
             </View>
-            <View style={{
-                flex: 1,
-                flexDirection: 'column',
-                padding: 10,
-                // backgroundColor: 'red',
-                shadowColor: '#171717',
-                shadowOffset: { width: -2, height: 4 },
-                shadowOpacity: 0.2,
-                shadowRadius: 3,
-                elevation: 2,
-            }}>
-                <Text style={{ fontSize: 20, color: '#000', fontWeight: "700" }}>{mockdata.companyName}</Text>
-                <Text style={{ fontSize: 14, color: '#000', fontWeight: "300" }}>{mockdata.duration} {mockdata.orderName}</Text>
-                <Text style={{ fontSize: 14, color: '#000', fontWeight: "300" }}>{mockdata.distance} miles away·Closes at {mockdata.closeAt}·£{mockdata.price}</Text>
-                <Text style={{ fontSize: 14, color: '#000', fontWeight: "300" }}>minimum·£{mockdata.deliveryCharge} delivery</Text>
-                <View style={{ height: 60, flexDirection: 'row', justifyContent: 'space-between', padding: 10, alignItems: 'center' }}>
-                    <View style={{ height: 60, width: 30, justifyContent: 'center', alignItems: 'center', padding: 5 }}>
+            <View style={styles.contentWrapper}>
+                <Text style={styles.orderTitle}>{mockdata.companyName}</Text>
+                <Text style={styles.orderText}>{mockdata.duration} {mockdata.orderName}</Text>
+                <Text style={styles.orderText}>{mockdata.distance} miles away·Closes at {mockdata.closeAt}·£{mockdata.price}</Text>
+                <Text style={styles.orderText}>minimum·£{mockdata.deliveryCharge} delivery</Text>
+                <View style={styles.orderInfoWrapper}>
+                    <View style={styles.iconWrapper}>
                         <Icon name="info-circle" size={20} color="#00b8a9" />
                     </View>
-                    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start', flexDirection: 'column' }}>
-                        <Text style={{ color: '#000', fontSize: 14, fontWeight: "200" }}>Info</Text>
-                        <Text style={{ color: '#000', fontSize: 12, fontWeight: "200" }}>Map, allergens and hygiene rating</Text>
+                    <View style={styles.infoTextWrapper}>
+                        <Text style={styles.infoText}>Info</Text>
+                        <Text style={styles.infoDetail}>Map, allergens and hygiene rating</Text>
                     </View>
-                    <View style={{ height: 60, width: 30, justifyContent: 'center', alignItems: 'center', padding: 5 }}>
+                    <View style={styles.iconWrapper}>
                         <Icon name="arrow-right" size={20} color="#00b8a9" />
                     </View>
                 </View>
-                <View style={{ height: 60, flexDirection: 'row', justifyContent: 'space-between', padding: 10, alignItems: 'center' }}>
-                    <View style={{ height: 60, width: 30, justifyContent: 'center', alignItems: 'center', padding: 5 }}>
+                <View style={styles.orderInfoWrapper}>
+                    <View style={styles.iconWrapper}>
                         <Icon name="star" size={20} color="#00b8a9" />
                     </View>
-                    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start', flexDirection: 'column' }}>
-                        <Text style={{ color: '#000', fontSize: 14, fontWeight: "200" }}>{mockdata.rating} Excellent</Text>
-                        <Text style={{ color: '#000', fontSize: 12, fontWeight: "200" }}>See all 600 reviews</Text>
+                    <View style={styles.infoTextWrapper}>
+                        <Text style={styles.infoText}>{mockdata.rating} Excellent</Text>
+                        <Text style={styles.infoDetail}>See all 600 reviews</Text>
                     </View>
-                    <View style={{ height: 60, width: 30, justifyContent: 'center', alignItems: 'center', padding: 5 }}>
+                    <View style={styles.iconWrapper}>
                         <Icon name="arrow-right" size={20} color="#00b8a9" />
                     </View>
                 </View>
-                <View style={{ height: 60, flexDirection: 'row', justifyContent: 'space-between', padding: 10, alignItems: 'center' }}>
-                    <View style={{ height: 60, width: 30, justifyContent: 'center', alignItems: 'center', padding: 5 }}>
+                <View style={styles.orderInfoWrapper}>
+                    <View style={styles.iconWrapper}>
                         <Icon name="bicycle" size={15} color="#00b8a9" />
                     </View>
-                    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start', flexDirection: 'column' }}>
-                        <Text style={{ color: '#000', fontSize: 14, fontWeight: "200" }}>Deliver in {mockdata.duration}</Text>
+                    <View style={styles.infoTextWrapper}>
+                        <Text style={styles.infoText}>Deliver in {mockdata.duration}</Text>
                     </View>
-                    <View style={{ height: 60, justifyContent: 'center', alignItems: 'center', padding: 5 }}>
-                        <Text style={{ color: '#00b8a9', fontSize: 14, fontWeight: "300" }}>Change</Text>
+                    <View style={styles.infoButtonWrapper}>
+                        <Text style={styles.infoButtonText}>Change</Text>
                     </View>
                 </View>
             </View>
@@ -89,6 +77,10 @@ const styles = StyleSheet.create({
         // right: 0,
         // paddingTop: 10
         // backgroundColor: 'red'
+    },
+    backgroundImageWrapper: {
+        flex: 1,
+        height: 250
     },
     backgroundImage: {
         flex: 1,
@@ -120,7 +112,46 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         flexDirection: 'row',
         justifyContent: 'space-between'
-    }
+    },
+    buttonText: {
+        color: '#000',
+        marginLeft: 5
+    },
+    contentWrapper: {
+        flex: 1,
+        flexDirection: 'column',
+        padding: 10,
+        // backgroundColor: 'red',
+        shadowColor: '#171717',
+        shadowOffset: { width: -2, height: 4 },
+        shadowOpacity: 0.2,
+        shadowRadius: 3,
+        elevation: 2,
+    },
+    orderTitle: { fontSize: 20, color: '#000', fontWeight: "700" },
+    orderText: { fontSize: 14, color: '#000', fontWeight: "300" },
+    orderInfoWrapper: {
+        height: 60,
+        flexDirection: 'row', justifyContent: 'space-between', padding: 10, alignItems: 'center'
+    },
+    iconWrapper: {
+        height: 60,
+        width: 30, justifyContent: 'center', alignItems: 'center', padding: 5
+    },
+    infoTextWrapper: {
+        flex: 1,
+        justifyContent: 'center', alignItems: 'flex-start', flexDirection: 'column'
+    },
+    infoText: {
+        color: '#000', fontSize: 14, fontWeight: "200"
+    },
+    infoDetail: {
+        color: '#000',
+        fontSize: 12,
+        fontWeight: "200"
+    },
+    infoButtonWrapper: { height: 60, justifyContent: 'center', alignItems: 'center', padding: 5 },
+    infoButtonText: { color: '#00b8a9', fontSize: 14, fontWeight: "300" }
 });
 
 export { SubHeader };
