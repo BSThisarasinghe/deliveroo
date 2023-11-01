@@ -24,7 +24,7 @@ function SubHeader({ orderDetails }: any) {
                     </View>
                 </ImageBackground>
             </View>
-            <View style={styles.contentWrapper}>
+            {orderDetails && <View style={styles.contentWrapper}>
                 <Text style={styles.orderTitle}>{orderDetails.companyName}</Text>
                 <Text style={styles.orderText}>{orderDetails.duration} {orderDetails.orderName}</Text>
                 <Text style={styles.orderText}>{orderDetails.distance} miles away·Closes at {orderDetails.closeAt}·£{orderDetails.price}</Text>
@@ -64,7 +64,7 @@ function SubHeader({ orderDetails }: any) {
                         <Text style={styles.infoButtonText}>Change</Text>
                     </View>
                 </View>
-            </View>
+            </View>}
         </View>
     );
 }
@@ -115,7 +115,8 @@ const styles = StyleSheet.create({
     },
     buttonText: {
         color: '#000',
-        marginLeft: 5
+        marginLeft: 5,
+        fontFamily: 'ProximaNovaRegular'
     },
     contentWrapper: {
         flex: 1,
@@ -128,8 +129,8 @@ const styles = StyleSheet.create({
         shadowRadius: 3,
         elevation: 2,
     },
-    orderTitle: { fontSize: 20, color: '#000', fontWeight: "700" },
-    orderText: { fontSize: 14, color: '#000', fontWeight: "300" },
+    orderTitle: { fontSize: 20, color: '#000', fontWeight: "700", fontFamily: 'ProximaNovaBold' },
+    orderText: { fontSize: 14, color: '#000', fontWeight: "300", fontFamily: 'ProximaNovaRegular' },
     orderInfoWrapper: {
         height: 60,
         flexDirection: 'row', justifyContent: 'space-between', padding: 10, alignItems: 'center'
