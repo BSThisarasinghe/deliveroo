@@ -20,7 +20,7 @@ export default function Home() {
     const scrollToItem = (index: number) => {
         setTab(index);
         if (flatListRef.current) {
-            let data: any = orderDetails.menu;
+            let data: any = orderDetails?.menu;
             flatListRef.current.scrollToItem({ animated: true, item: data[index] });
         }
     };
@@ -132,12 +132,13 @@ export default function Home() {
     return (
         <View style={styles.container}>
             <View>
+                {/* <Text style={{ color: '#000' }}>{JSON.stringify(orderDetails)}</Text> */}
                 <FlatList
                     ref={flatListRef}
-                    data={orderDetails.menu}
+                    data={orderDetails?.menu}
                     renderItem={renderItem}
                     keyExtractor={(item, index) => index.toString()}
-                    stickyHeaderIndices={[1]}
+                    stickyHeaderIndices={orderDetails?.menu.length > 0 ? [1] : [0]}
                     ListHeaderComponent={renderHeader}
                     ListFooterComponent={renderFooter}
                     onScroll={handleScroll}
