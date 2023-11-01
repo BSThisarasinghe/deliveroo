@@ -5,6 +5,9 @@ import { useDispatch, useSelector } from "react-redux";
 import DataItem from '../models/data-item.model';
 import MenuItem from '../models/menu-item.model';
 import { fetchMockdata } from '../store/actions';
+import { MenuListItem } from '../components/MenuItem';
+import { MenuBar } from '../components/MenuBar';
+import { RecipeListItem } from '../components/RecipeListItem';
 
 export default function Home() {
     const flatListRef = useRef<FlatList<DataItem>>(null);
@@ -15,7 +18,7 @@ export default function Home() {
 
     const {
         orderDetails
-      } = useSelector<any, any>(({ order }) => order);
+    } = useSelector<any, any>(({ order }) => order);
 
     const scrollToItem = (index: number) => {
         setTab(index);
@@ -31,20 +34,9 @@ export default function Home() {
 
     const renderMenuItem = ({ item }: { item: MenuItem }) => {
         return (
-            <View style={styles.menuItemWrapper}>
-                <View style={styles.menuItemTextWrapper}>
-                    <Text style={styles.menuItemTitle}>{item.title}</Text>
-                    {item.description && <Text style={styles.menuItemText}>{item.description}</Text>}
-                    {item.kcal && <Text style={styles.menuItemText}>{item.kcal} kcal</Text>}
-                    {item.price && <Text style={styles.menuItemText}>${item.price} sold out</Text>}
-                </View>
-                <View style={styles.menuImageWrapper}>
-                    <Image
-                        source={{ uri: item.image }}
-                        style={styles.menuImage}
-                    />
-                </View>
-            </View>
+            <MenuListItem
+                item={item}
+            />
         )
     }
 
@@ -52,63 +44,19 @@ export default function Home() {
     const renderItem = ({ item }: { item: DataItem }) => {
         if (item.type == "header") {
             return (
-                <View>
-                    <ScrollView style={styles.stickyHeader} contentContainerStyle={styles.stickyHeaderContainer} horizontal>
-                        <View style={styles.stickyHeaderButtonWrapper}>
-                            <TouchableOpacity style={[styles.stickyHeaderButton, { backgroundColor: tab == 0 ? '#00b8a9' : 'transparent' }]} onPress={() => scrollToItem(0)}>
-                                <Text style={{ color: tab == 0 ? 'white' : '#00b8a9' }}>New daily Specials</Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity style={[styles.stickyHeaderButton, { backgroundColor: tab == 1 ? '#00b8a9' : 'transparent' }]} onPress={() => scrollToItem(1)}>
-                                <Text style={{ color: tab == 1 ? 'white' : '#00b8a9' }}>Salads</Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity style={[styles.stickyHeaderButton, { backgroundColor: tab == 2 ? '#00b8a9' : 'transparent' }]} onPress={() => scrollToItem(2)}>
-                                <Text style={{ color: tab == 2 ? 'white' : '#00b8a9' }}>How power bowls</Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity style={[styles.stickyHeaderButton, { backgroundColor: tab == 3 ? '#00b8a9' : 'transparent' }]} onPress={() => scrollToItem(3)}>
-                                <Text style={{ color: tab == 3 ? 'white' : '#00b8a9' }}>Gym food</Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity style={[styles.stickyHeaderButton, { backgroundColor: tab == 4 ? '#00b8a9' : 'transparent' }]} onPress={() => scrollToItem(4)}>
-                                <Text style={{ color: tab == 4 ? 'white' : '#00b8a9' }}>Bundles</Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity style={[styles.stickyHeaderButton, { backgroundColor: tab == 5 ? '#00b8a9' : 'transparent' }]} onPress={() => scrollToItem(5)}>
-                                <Text style={{ color: tab == 5 ? 'white' : '#00b8a9' }}>Rainbow Wraps</Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity style={[styles.stickyHeaderButton, { backgroundColor: tab == 6 ? '#00b8a9' : 'transparent' }]} onPress={() => scrollToItem(6)}>
-                                <Text style={{ color: tab == 6 ? 'white' : '#00b8a9' }}>Vegan menu</Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity style={[styles.stickyHeaderButton, { backgroundColor: tab == 7 ? '#00b8a9' : 'transparent' }]} onPress={() => scrollToItem(7)}>
-                                <Text style={{ color: tab == 7 ? 'white' : '#00b8a9' }}>Snacks and sides</Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity style={[styles.stickyHeaderButton, { backgroundColor: tab == 8 ? '#00b8a9' : 'transparent' }]} onPress={() => scrollToItem(8)}>
-                                <Text style={{ color: tab == 8 ? 'white' : '#00b8a9' }}>Yoghurt & fruit</Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity style={[styles.stickyHeaderButton, { backgroundColor: tab == 9 ? '#00b8a9' : 'transparent' }]} onPress={() => scrollToItem(9)}>
-                                <Text style={{ color: tab == 9 ? 'white' : '#00b8a9' }}>Cold drinks</Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity style={[styles.stickyHeaderButton, { backgroundColor: tab == 10 ? '#00b8a9' : 'transparent' }]} onPress={() => scrollToItem(10)}>
-                                <Text style={{ color: tab == 10 ? 'white' : '#00b8a9' }}>Smoothies, shakes & juice</Text>
-                            </TouchableOpacity>
-                        </View>
-                    </ScrollView>
-                </View>
+                <MenuBar
+                    tab={tab}
+                    scrollToItem={scrollToItem}
+                />
             )
         } else {
             return (
-                <View style={styles.listItem}
-                    onLayout={(event) => {
-                        const { height } = event.nativeEvent.layout;
-                        if (height !== itemHeight) {
-                            setItemHeight(height);
-                        }
-                    }}
-                >
-                    <Text style={styles.itemType}>{item.type}</Text>
-                    <FlatList
-                        data={item.menuList}
-                        renderItem={renderMenuItem}
-                        keyExtractor={(i, index) => index.toString()}
-                    />
-                </View>
+                <RecipeListItem
+                    itemHeight={itemHeight}
+                    setItemHeight={setItemHeight}
+                    item={item}
+                    renderMenuItem={renderMenuItem}
+                />
             );
         }
     };
